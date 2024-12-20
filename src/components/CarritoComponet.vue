@@ -17,14 +17,15 @@
         <p>Total Price: ${{ cart.totalPrice }}</p>
         <button @click="clearCart" class="clear-cart-btn">Clear Cart</button>
       </div>
-      <router-link to="/listadoproductos" class="back-to-products">Volver a productos</router-link>
+      <router-link to="/productos" class="back-to-products">Volver a productos</router-link>
     </div>
   </template>
  
   <script>
-  import { cartState } from '../cartState';
+  import { cartState } from '../CarritoCompra';
  
   export default {
+    name: 'CarritoComponent',
     setup() {
       const removeFromCart = (productId) => {
         cartState.removeItem(productId);

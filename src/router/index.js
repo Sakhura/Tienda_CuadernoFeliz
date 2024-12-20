@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductoComponent from '@/components/ProductoComponent.vue'
+import LoginUsuario from '@/views/LoginUsuario.vue'
+import CarritoComponet from '@/components/CarritoComponet.vue'
 
 Vue.use(VueRouter)
 
@@ -25,7 +27,17 @@ const routes = [
     component: ProductoComponent,
     props: true
 
-  }
+  },
+  {
+    path: '/login',
+    name: 'LoginUsuario',
+    component: LoginUsuario
+    },
+    {
+      path: '/carrito',
+      name: 'CarritoComponent',
+      component: CarritoComponet
+      }
 ]
 
 const router = new VueRouter({

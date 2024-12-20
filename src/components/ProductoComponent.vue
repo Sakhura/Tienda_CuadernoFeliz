@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2>Detalle Producto</h2>
-    <router-link to="/listado">
+    <router-link to="/productos">
       <button class="back-button">Regresar al Listado de Productos</button>
     </router-link>
     <div v-if="producto" class="product-detail">
@@ -111,7 +111,7 @@ export default {
     };
   },
   mounted() {
-    const productId = parseInt(this.$route.params.id);
+    const productId = parseInt(this.$route.params.id) +1;
     this.producto = this.productos.find(
       (producto) => producto.id === productId
     );
