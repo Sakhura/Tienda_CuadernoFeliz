@@ -22,7 +22,7 @@
         </v-card>
       </v-window-item>
       <v-window-item
-        v-for="n in length"
+        v-for="n in trabajos"
         :key="`card-${n}`"
       >
         <v-card
@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
   export default {
     name: 'HomeComponent',
 
@@ -97,34 +98,16 @@
       onboarding: 0,
       commentsOnboarding: 0,
       promocionesOnboarding: 0,
-      length: [
-        'https://calendariospersonalizadosempresa.es/wp-content/uploads/2018/06/pack3-1.jpg',
-        'https://marifran.cl/wp-content/uploads/2021/09/agenda-enfermera-2022-768x768.webp',
-        'https://cdn1.totalcommerce.cloud/laplazamorada/product-thumb/es/calendarios-personalizados-1.webp',
-        'https://www.regalooriginal.com/frontend/urls/grande/cuaderno-pequeno-g1.jpg',
-        'https://supercolor.com.co/wp-content/uploads/2022/06/11111.png',
-        'https://www.hacervelas.es/wp-content/uploads/2019/03/velas-personalizadas.jpg'
-      ],
-      customerComments: [
-        { name: 'María González', text: 'Los productos son de excelente calidad, ¡me encantaron!' },
-        { name: 'Juan Pérez', text: 'El diseño personalizado superó mis expectativas. Muy recomendable.' },
-        { name: 'Ana López', text: 'La atención al cliente fue increíble y los resultados aún mejores.' },
-        { name: 'Pedro Rodríguez', text: 'Estoy muy satisfecho con el servicio y los productos personalizados.' },
-        { name: 'Luisa Gómez', text: 'Me encantó la variedad de productos y la facilidad para personalizarlos.' },
-        { name: 'Carlos Martínez', text: 'Los productos son de excelente calidad, ¡me encantaron!' },
-        { name: 'Marta Rodríguez', text: 'El diseño personalizado superó mis expectativas. Muy recomendable.' },
-      ],
-      promociones: [
-        { name: 'Solo por diciembre', text: '¡Obten hasta un 25% de descuento en todos los productos! solo hasta el 24 de diciembre' },
-        { name: 'Calendario Personalizado', text: '¡Obtén un 10% de descuento en tu calendario personalizado!' },
-        { name: 'Cuaderno Personalizado', text: '¡Obtén un 10% de descuento en tu cuaderno personalizado!' },
-        { name: 'Agenda Personalizada', text: '¡Obtén un 25% de descuento en tu agenda personalizada!' },
-        { name: 'Velas Personalizadas', text: '¡Obtén un 15% de descuento en tus velas personalizadas!' },
-        { name: 'Tazas Personalizadas', text: '¡Obtén un 10% de descuento en tus tazas personalizadas!' },
-        { name: 'Llaveros Personalizados', text: '¡Obtén un 10% de descuento en tus llaveros personalizados!' },
-    ]
+      
+    }),
+    computed: {
+      ...mapState({
+        trabajos: state => state.trabajos,
+        promociones: state => state.promociones,
+        customerComments: state => state.customerComments// Mapea el estado de productos
     }),
 
+    },
     mounted() {
       this.startAutoSlide();
       
@@ -145,7 +128,8 @@
       },
       
     },
-  };
+  }
+
 </script>
 
 <style>
