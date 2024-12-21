@@ -13,6 +13,7 @@
       />
       <p><strong>Precio:</strong> {{ producto.precio }}</p>
       <p><strong>Descripción:</strong> {{ producto.description }}</p>
+      <v-btn class="white--text" color="#BA68C8" @click="addItem(products)">agregar</v-btn>
     </div>
     <div v-else>
       <p>Producto no encontrado.</p>
@@ -21,6 +22,8 @@
 </template>
  
 <script>
+import { cartState } from '../CarritoCompra';
+ 
 export default {
   name: "DetalleProducto",
   data() {
@@ -111,14 +114,29 @@ export default {
     };
   },
   mounted() {
-    const productId = parseInt(this.$route.params.id) +1;
+    const productId = parseInt(this.$route.params.id) + 1;
     this.producto = this.productos.find(
       (producto) => producto.id === productId
     );
   },
+ 
+  methods: {
+    removeFromCart(productId) {
+      cartState.removeItem(productId);
+    },
+    clearCart() {
+      cartState.clearCart();
+    },
+  },
+ 
+  computed: {
+    cart() {
+      return cartState;
+    },
+  },
 };
 </script>
- 
+
 <style>
 .product-image {
   width: 100%;
